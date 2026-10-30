@@ -1,0 +1,20 @@
+# Dependencies and build output
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Secrets: only .env.example is committed
+.env
+.env.*
+!.env.example
+
+# Test and tool output
+playwright-report/
+test-results/
+.impeccable/
+
+# Local editor, OS and hosting state
+.claude/
+.vercel/
+.DS_Store
+._*
