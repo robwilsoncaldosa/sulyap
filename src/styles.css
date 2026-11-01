@@ -314,6 +314,7 @@ img {
   grid-row: 1;
 }
 .occasion-visual .dress-photo {
+  width: 100%;
   aspect-ratio: 4/4.5;
   max-height: 588px;
 }
