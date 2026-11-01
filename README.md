@@ -4,7 +4,9 @@
 
 Sulyap (Tagalog for "a glimpse") is a four-step web app for occasion-dress rentals. You set your dates and cash limit, shortlist two dresses, and preview **both on your own photo with the YouCam AI Clothes API**. Then you copy a clear inquiry for the shop. Built for the [YouCam API Skin AI & eCommerce VTO Hackathon](https://youcam-api-skin-ai-ecommerce.devpost.com/) (eCommerce VTO track).
 
-![Sulyap occasion step](docs/screenshot-occasion.png)
+![Sulyap teaser: two real YouCam looks from one photo, then the true cash each dress needs](docs/sulyap-teaser.gif)
+
+▶ [Watch the 30-second teaser with sound](docs/sulyap-teaser.mp4) · The try-on photos show a team member, used with her permission.
 
 ## What it does
 
