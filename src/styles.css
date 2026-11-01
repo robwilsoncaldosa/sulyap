@@ -691,6 +691,12 @@ img {
   padding-block: 0;
   font-size: 0.875rem;
 }
+.look-preview {
+  transition: opacity var(--motion-feedback) var(--ease-out);
+}
+.look-preview:not([data-loaded]) {
+  opacity: 0;
+}
 .reference-inset {
   position: absolute;
   right: 12px;

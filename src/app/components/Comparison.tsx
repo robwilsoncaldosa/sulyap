@@ -106,6 +106,7 @@ export function Comparison({
                           className="look-preview"
                           src={looks[index].imageUrl}
                           alt={`YouCam AI preview of you wearing the ${dress.name.toLowerCase()} dress`}
+                          onLoad={(event) => (event.currentTarget.dataset.loaded = "true")}
                           onError={() => tryOn.previewFailed(dress.id)}
                         />
                         <figure className="reference-inset">

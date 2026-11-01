@@ -72,6 +72,7 @@ export function Inquiry({
                 className="look-preview"
                 src={look.imageUrl}
                 alt={`YouCam AI preview of you wearing the ${dress.name.toLowerCase()} dress`}
+                onLoad={(event) => (event.currentTarget.dataset.loaded = "true")}
                 onError={onPreviewError}
               />
               <span className="image-label">Your YouCam look</span>
