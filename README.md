@@ -6,6 +6,8 @@ Sulyap (Tagalog for "a glimpse") is a four-step web app for occasion-dress renta
 
 **Live demo: [sulyap-gilt.vercel.app](https://sulyap-gilt.vercel.app)** (no account needed; the try-on uses real YouCam renders).
 
+**Demo video (1:57): [youtu.be/YgNzSFA-P7Y](https://youtu.be/YgNzSFA-P7Y)** · [Devpost project](https://devpost.com/software/sulyap)
+
 ![Sulyap teaser: two real YouCam looks from one photo, then the true cash each dress needs](docs/sulyap-teaser.gif)
 
 ▶ [Watch the 30-second teaser with sound](docs/sulyap-teaser.mp4) · The try-on photos show a team member, used with her permission.
