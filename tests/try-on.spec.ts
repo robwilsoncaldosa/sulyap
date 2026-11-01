@@ -84,6 +84,9 @@ for (const width of [390, 1280]) {
     // The inquiry never carries the photo or preview link.
     await page.getByRole('radio', { name: 'B · Midnight blue', exact: true }).check();
     await page.getByRole('button', { name: 'Prepare inquiry' }).click();
+    const recap = page.locator('.inquiry-recap');
+    await expect(recap.getByRole('img', { name: 'YouCam AI preview of you wearing the midnight blue dress' })).toBeVisible();
+    await expect(recap.locator('.image-label')).toHaveText('Your YouCam look');
     const inquiry = await page.getByRole('textbox').inputValue();
     expect(inquiry).not.toMatch(/blob:|task_|file_test_|https?:\/\/|\.webp|\.jpe?g/i);
     expect(inquiry).toContain('Any AI try-on preview is not a size or fit check.');

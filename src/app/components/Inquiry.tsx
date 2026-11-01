@@ -20,14 +20,19 @@ import {
   Stack,
   Textarea,
 } from "../../components/ui";
+import type { Look } from "../tryOn/useTryOn";
 export function Inquiry({
   text,
   dress,
   occasion,
+  look,
+  onPreviewError,
 }: {
   text: string;
   dress: Dress;
   occasion: Occasion;
+  look?: Look;
+  onPreviewError?: () => void;
 }) {
   const quote = evaluateDress(dress, occasion);
   const [status, setStatus] = useState("");
@@ -61,11 +66,23 @@ export function Inquiry({
     <div className="inquiry-layout">
       <aside className="inquiry-recap">
         <div className="dress-photo">
-          <DressImage
-            dress={dress}
-            sizes="(max-width: 760px) 110px, 320px"
-            alt={`Model wearing the ${dress.name.toLowerCase()} dress`}
-          />
+          {look?.status === "success" ? (
+            <>
+              <img
+                className="look-preview"
+                src={look.imageUrl}
+                alt={`YouCam AI preview of you wearing the ${dress.name.toLowerCase()} dress`}
+                onError={onPreviewError}
+              />
+              <span className="image-label">Your YouCam look</span>
+            </>
+          ) : (
+            <DressImage
+              dress={dress}
+              sizes="(max-width: 760px) 110px, 320px"
+              alt={`Model wearing the ${dress.name.toLowerCase()} dress`}
+            />
+          )}
         </div>
         <h2>{dress.name}</h2>
         <p>{dress.reference} · Your preferred dress</p>

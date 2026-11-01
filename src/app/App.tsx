@@ -315,6 +315,8 @@ export default function App() {
                   dress={preferredDress}
                   occasion={occasion}
                   text={createInquiry(preferredDress, occasion)}
+                  look={tryOn.lookFor(preferredDress.id)}
+                  onPreviewError={() => tryOn.previewFailed(preferredDress.id)}
                 />
               )}
             </Stack>

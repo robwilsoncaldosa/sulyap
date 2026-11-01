@@ -770,6 +770,10 @@ img {
   aspect-ratio: auto;
   margin-bottom: 20px;
 }
+.inquiry-recap .image-label {
+  left: 8px;
+  bottom: 8px;
+}
 .inquiry-recap h2 {
   font-family: var(--font-heading);
   font-size: 2.25rem;
@@ -950,6 +954,13 @@ footer {
     height: 150px;
     grid-row: 1/4;
     margin: 0;
+  }
+  .inquiry-recap .image-label {
+    left: 4px;
+    bottom: 4px;
+    padding: 2px 5px;
+    font-size: 0.625rem;
+    white-space: nowrap;
   }
   .inquiry-recap h2 {
     font-size: 1.75rem;
