@@ -10,7 +10,7 @@
     "preview": "vite preview --host 127.0.0.1",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "lint": "eslint src"
+    "lint": "eslint src server api"
   },
   "dependencies": {
     "@fontsource/dm-sans": "^5.3.0",
