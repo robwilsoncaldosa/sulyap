@@ -76,7 +76,7 @@ for (const [width, fontSize, reducedMotion, colorScheme] of [
     for (const name of ['Sage wrap', 'Midnight blue']) await page.getByRole('button', { name: `Select ${name}`, exact: true }).click();
     await page.getByRole('button', { name: 'Compare these two' }).click();
     const explanation = page.getByRole('region', { name: 'Your photo. Two possible looks.' });
-    const how = explanation.getByRole('button', { name: 'How personal try-on will work' });
+    const how = explanation.getByRole('button', { name: 'How personal try-on works' });
     const content = explanation.locator('[data-slot=accordion-content]');
     await how.click(); await settled(content, true);
     await expect(explanation.getByRole('listitem')).toHaveCount(3);

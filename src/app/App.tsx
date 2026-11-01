@@ -24,6 +24,7 @@ import {
   type Occasion,
 } from "../domain/rental";
 import { useJourneyNavigation } from "./useJourneyNavigation";
+import { useTryOn } from "./tryOn/useTryOn";
 import {
   Comparison,
   DressCard,
@@ -41,6 +42,7 @@ export default function App() {
   const [attempted, setAttempted] = useState(false);
   const [notice, setNotice] = useState("");
   const heading = useRef<HTMLHeadingElement>(null);
+  const tryOn = useTryOn();
   const valid = !Object.keys(validateOccasion(occasion)).length;
   const selectedDresses = selected.map((id) =>
     catalog.find((dress) => dress.id === id)!,
@@ -102,7 +104,9 @@ export default function App() {
         <div className="demo-disclosure">
           <strong>Sample dresses. Real decisions.</strong>
           <span>
-            Fictional collection · Personal try-on not connected.
+            {tryOn.available
+              ? "Fictional collection · Personal try-on by YouCam AI."
+              : "Fictional collection · Personal try-on not connected."}
           </span>
         </div>
         <nav aria-label="Rental journey">
@@ -289,6 +293,7 @@ export default function App() {
                     occasion={occasion}
                     preferred={preferred}
                     onPrefer={setPreferred}
+                    tryOn={tryOn}
                   />
                   <div className="next-action">
                     <p>

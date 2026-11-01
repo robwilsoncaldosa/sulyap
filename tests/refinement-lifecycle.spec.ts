@@ -140,7 +140,7 @@ for (const width of [320, 390, 1440]) {
       expect((await page.locator('.compare-look .dress-photo').first().boundingBox())!.y).toBeLessThan(844);
     }
     await page.getByRole('radio', { name: 'B · Midnight blue', exact: true }).check();
-    await page.getByRole('button', { name: 'How personal try-on will work' }).click();
+    await page.getByRole('button', { name: 'How personal try-on works' }).click();
     await capture(page, `${width}-compare.png`);
     await page.getByRole('button', { name: 'Prepare inquiry' }).click();
     await display(page.locator('.inquiry-recap img'), 'midnight');

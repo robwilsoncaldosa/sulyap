@@ -3,6 +3,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { createElement } from "react";
 import { catalog } from "../data/catalog";
 import { Comparison, DressCard } from "../app/components";
+import type { TryOn } from "../app/tryOn/useTryOn";
 import {
   calendarDay,
   createInquiry,
@@ -14,6 +15,20 @@ import {
 } from "./rental";
 const sage = catalog[0],
   midnight = catalog[1];
+const tryOn: TryOn = {
+  config: null,
+  available: false,
+  consent: false,
+  setConsent() {},
+  photo: null,
+  photoError: "",
+  preparing: false,
+  async choosePhoto() {},
+  removePhoto() {},
+  createLooks() {},
+  previewFailed() {},
+  lookFor: () => undefined,
+};
 describe("rental rules across displayed and saved consumers", () => {
   it("credits reservation once, includes fees and security, and distinguishes cash eligibility", () => {
     expect(evaluateDress(sage, sampleOccasion)).toMatchObject({
@@ -52,6 +67,7 @@ describe("rental rules across displayed and saved consumers", () => {
         occasion: sampleOccasion,
         preferred: "midnight",
         onPrefer() {},
+        tryOn,
       }),
     );
     expect(card).toContain("₱2,400");
@@ -68,6 +84,7 @@ describe("rental rules across displayed and saved consumers", () => {
           occasion: changed,
           preferred: "midnight",
           onPrefer() {},
+          tryOn,
         }),
       ).match(/Over your cash limit/g),
     ).toHaveLength(2);
@@ -160,5 +177,32 @@ describe("rental rules across displayed and saved consumers", () => {
     ])
       expect(text).toContain(part);
     expect(text).not.toContain("<img");
+  });
+});
+describe("personal previews change pictures, not money", () => {
+  it("shows a YouCam result beside the original reference with identical cash rows", () => {
+    const render = (lookFor: TryOn["lookFor"]) =>
+      renderToStaticMarkup(
+        createElement(Comparison, {
+          dresses: [sage, midnight],
+          occasion: sampleOccasion,
+          preferred: null,
+          onPrefer() {},
+          tryOn: { ...tryOn, available: true, lookFor },
+        }),
+      );
+    const plain = render(() => undefined);
+    const previewed = render((id) =>
+      id === "sage"
+        ? { status: "success", taskId: "task-123456", imageUrl: "https://example.test/look.jpg", refreshed: false }
+        : { status: "running", taskId: "task-654321" },
+    );
+    const table = (html: string) => html.slice(html.indexOf("<table"), html.indexOf("</table>"));
+    expect(table(previewed)).toBe(table(plain));
+    expect(previewed).toContain('src="https://example.test/look.jpg"');
+    expect(previewed).toContain("YouCam AI preview");
+    expect(previewed).toContain("Original sage wrap reference");
+    expect(previewed).toContain("Creating your look");
+    expect(previewed.match(/Illustrative image/g)?.length).toBeGreaterThanOrEqual(1);
   });
 });

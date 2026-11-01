@@ -16,9 +16,10 @@ for (const [width, fontSize] of [[390, 16], [1440, 16], [390, 32]] as const) {
     for (const name of ['Sage wrap', 'Midnight blue']) await page.getByRole('button', { name: `Select ${name}`, exact: true }).click();
     await page.getByRole('button', { name: 'Compare these two' }).click();
     const explanation = page.getByRole('region', { name: 'Your photo. Two possible looks.' });
-    const summary = explanation.getByRole('button', { name: 'How personal try-on will work' });
+    const summary = explanation.getByRole('button', { name: 'How personal try-on works' });
     await expect(explanation).toContainText('YouCam · not connected');
     await expect(explanation).toContainText('images above show sample models');
+    await expect(explanation).toContainText('isn’t configured on this server');
     await expect(summary).toHaveAttribute('aria-expanded', 'false');
     await summary.focus();
     await page.keyboard.press('Tab');
@@ -28,7 +29,7 @@ for (const [width, fontSize] of [[390, 16], [1440, 16], [390, 32]] as const) {
     await page.keyboard.press('Enter');
     await expect(summary).toHaveAttribute('aria-expanded', 'true');
     await expect(explanation.getByRole('listitem')).toHaveCount(3);
-    for (const text of ['agree to share it', 'same photo is paired with each dress', 'Planned feature.', 'not available', 'will not confirm size, physical fit or availability']) await expect(explanation).toContainText(text);
+    for (const text of ['agree to share it', 'same photo is paired with each dress', 'doesn’t save your photo', 'deleted automatically after 30 days', 'never includes your photo', 'will not confirm size, physical fit or availability']) await expect(explanation).toContainText(text);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     for (const target of [summary, explanation, page.getByRole('table')]) {
       const box = (await target.boundingBox())!;
