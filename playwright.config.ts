@@ -6,6 +6,8 @@ export default defineConfig({
     command: "npm run dev -- --port 5173 --strictPort",
     url: "http://127.0.0.1:5173",
     reuseExistingServer: !process.env.CI,
+    // Browser checks run without a provider key; try-on specs mock /api/try-on instead.
+    env: { YOUCAM_API_KEY: "" },
   },
   projects: [{ name: "chromium", use: { browserName: "chromium" } }],
 });
