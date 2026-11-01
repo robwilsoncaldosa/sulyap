@@ -184,6 +184,6 @@ export function createInquiry(dress: Dress, occasion: Occasion): string {
     "Can I arrange a physical fitting, and can you confirm the size and physical fit before I reserve?",
     "Please confirm local pickup arrangements and physical return by 6 PM. Cleaning is included in the sample terms.",
     "Security is refundable only after inspection, subject to deductions. Please confirm deduction conditions and refund timing; neither a full refund nor its timing is guaranteed.",
-    "Illustrative AI-created garment images only. YouCam is not connected; there is no personal try-on or fit prediction.",
+    "Catalog photos are illustrative. Any AI try-on preview is not a size or fit check.",
   ].join("\n");
 }

@@ -173,7 +173,7 @@ describe("rental rules across displayed and saved consumers", () => {
       "local shop pickup",
       "refund timing",
       "not a booking",
-      "YouCam is not connected",
+      "not a size or fit check",
     ])
       expect(text).toContain(part);
     expect(text).not.toContain("<img");

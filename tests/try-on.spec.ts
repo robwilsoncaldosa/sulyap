@@ -85,7 +85,8 @@ for (const width of [390, 1280]) {
     await page.getByRole('radio', { name: 'B · Midnight blue', exact: true }).check();
     await page.getByRole('button', { name: 'Prepare inquiry' }).click();
     const inquiry = await page.getByRole('textbox').inputValue();
-    expect(inquiry).not.toMatch(/blob:|task_|preview|photo/i);
+    expect(inquiry).not.toMatch(/blob:|task_|file_test_|https?:\/\/|\.webp|\.jpe?g/i);
+    expect(inquiry).toContain('Any AI try-on preview is not a size or fit check.');
   });
 }
 
