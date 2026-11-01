@@ -4,6 +4,8 @@
 
 Sulyap (Tagalog for "a glimpse") is a four-step web app for occasion-dress rentals. You set your dates and cash limit, shortlist two dresses, and preview **both on your own photo with the YouCam AI Clothes API**. Then you copy a clear inquiry for the shop. Built for the [YouCam API Skin AI & eCommerce VTO Hackathon](https://youcam-api-skin-ai-ecommerce.devpost.com/) (eCommerce VTO track).
 
+**Live demo: [sulyap-gilt.vercel.app](https://sulyap-gilt.vercel.app)** (no account needed; the try-on uses real YouCam renders).
+
 ![Sulyap teaser: two real YouCam looks from one photo, then the true cash each dress needs](docs/sulyap-teaser.gif)
 
 ▶ [Watch the 30-second teaser with sound](docs/sulyap-teaser.mp4) · The try-on photos show a team member, used with her permission.
@@ -99,6 +101,8 @@ npm run test:e2e         # 55 Chromium checks; try-on specs mock /api/try-on, so
 Playwright starts its own dev server with `YOUCAM_API_KEY` blank. It reuses a server already running on port 5173, so stop any server that has a real key first.
 
 ## Deploy (Vercel)
+
+The live demo runs on Vercel's free plan. To deploy your own copy:
 
 1. Import the GitHub repository in Vercel (Vite is detected; no root directory setting needed).
 2. Add `YOUCAM_API_KEY` under **Settings → Environment Variables**.
