@@ -6,6 +6,7 @@ import { createTryOnHandler } from "./tryOn.js";
 export function tryOnApi(env: Record<string, string | undefined>): Plugin {
   const handle = createTryOnHandler({
     apiKey: env.YOUCAM_API_KEY?.trim() || undefined,
+    baseUrl: env.YOUCAM_API_BASE_URL?.trim() || undefined,
     looksPerVisitorPerHour: Number(env.TRY_ON_LOOKS_PER_VISITOR_PER_HOUR) || undefined,
     looksPerDay: Number(env.TRY_ON_LOOKS_PER_DAY) || undefined,
   });

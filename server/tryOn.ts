@@ -107,6 +107,8 @@ function createLimiter(limit: number, windowMs: number, now: () => number) {
 
 export type TryOnOptions = {
   apiKey?: string;
+  /** Defaults to the documented host; set YOUCAM_API_BASE_URL if your console says otherwise. */
+  baseUrl?: string;
   client?: YouCamClient;
   /** Reads a catalog reference image; `origin` allows fetching it from the deployed site. */
   loadGarment?: (image: string, origin: string) => Promise<Uint8Array>;
@@ -117,7 +119,8 @@ export type TryOnOptions = {
 
 export function createTryOnHandler({
   apiKey,
-  client = apiKey ? createYouCamClient({ apiKey }) : undefined,
+  baseUrl,
+  client = apiKey ? createYouCamClient({ apiKey, baseUrl }) : undefined,
   loadGarment = async (image, origin) => {
     try {
       return new Uint8Array(await readFile(join(process.cwd(), "public", image)));
@@ -257,6 +260,7 @@ let shared: ReturnType<typeof createTryOnHandler> | undefined;
 export function tryOnFromEnv(env: Record<string, string | undefined> = process.env) {
   shared ??= createTryOnHandler({
     apiKey: env.YOUCAM_API_KEY?.trim() || undefined,
+    baseUrl: env.YOUCAM_API_BASE_URL?.trim() || undefined,
     looksPerVisitorPerHour: Number(env.TRY_ON_LOOKS_PER_VISITOR_PER_HOUR) || undefined,
     looksPerDay: Number(env.TRY_ON_LOOKS_PER_DAY) || undefined,
   });
