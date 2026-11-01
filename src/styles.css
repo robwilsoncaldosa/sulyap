@@ -688,11 +688,6 @@ img {
   padding-block: 0;
   font-size: 0.875rem;
 }
-.dress-photo .look-preview {
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
-}
 .reference-inset {
   position: absolute;
   right: 12px;
