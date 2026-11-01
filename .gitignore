@@ -19,3 +19,6 @@ smoke-*.jpg
 .vercel/
 .DS_Store
 ._*
+
+# Local-only notes and research (not part of the app)
+_archive/
