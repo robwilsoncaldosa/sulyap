@@ -43,10 +43,9 @@ export function DressCard({
       >
         <DressImage
           dress={dress}
-          alt={`Illustrative AI-created model wearing ${dress.name.toLowerCase()}`}
+          alt={`Model wearing the ${dress.name.toLowerCase()} dress`}
           loading="lazy"
         />
-        <span className="image-label">Illustrative image</span>
         {selected && (
           <span className="photo-selection">
             <Check aria-hidden="true" /> Selected
@@ -87,7 +86,7 @@ export function DressCard({
           </p>
           <Accordion type="single" collapsible>
             <AccordionItem value="terms">
-              <AccordionTrigger>Costs & sample terms</AccordionTrigger>
+              <AccordionTrigger>Costs & terms</AccordionTrigger>
               <AccordionContent>
                 <dl className="compact-costs">
                   <div>
@@ -121,7 +120,7 @@ export function DressCard({
                   is unconfirmed.
                 </p>
                 {dress.blocks?.length ? (
-                  <p>Sample conflict: Nov 8–10, 2026 (inclusive).</p>
+                  <p>Already booked Nov 8–10, 2026 (inclusive).</p>
                 ) : null}
               </AccordionContent>
             </AccordionItem>

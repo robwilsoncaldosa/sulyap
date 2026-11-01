@@ -1,4 +1,4 @@
 export const brand = {
   name: "Sulyap",
-  inquiryFilename: "sulyap-sample-inquiry.txt",
+  inquiryFilename: "sulyap-inquiry.txt",
 } as const;

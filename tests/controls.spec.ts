@@ -87,7 +87,7 @@ for (const [width, fontSize] of [[320, 16], [390, 32], [1440, 16]]) {
     await expect(collection.locator('..')).toHaveAttribute('data-invalid', 'true');
     const destructive = await page.locator('#collection-error').evaluate(el => getComputedStyle(el).color);
     await expect(collection.locator('..')).toHaveCSS('border-top-color', destructive);
-    await page.getByRole('button', { name: 'Use sample dates' }).click();
+    await page.getByRole('button', { name: 'Use example dates' }).click();
     await expect(collection).toHaveText('Nov 7, 2026'); await expect(collection).toHaveAttribute('aria-invalid', 'false');
   });
 }

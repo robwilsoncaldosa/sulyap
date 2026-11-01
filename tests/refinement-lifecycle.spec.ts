@@ -105,7 +105,7 @@ test('real native transition carries only selected garment identities and settle
 for (const width of [320, 390, 1440]) {
   test(`all image consumers, compact identity and accessible disclosure targets at ${width}px`, async ({ page, request }) => {
     await page.setViewportSize({ width, height: 844 }); await page.goto('/');
-    const logo = page.getByRole('link', { name: 'Sulyap, restart sample' }).locator('img');
+    const logo = page.getByRole('link', { name: 'Sulyap, start over' }).locator('img');
     await expect(logo).toHaveAttribute('src', '/brand/sulyap-horizontal.svg');
     expect(await logo.evaluate(el => (el as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
     for (const icon of await page.locator('link[rel="icon"], link[rel="apple-touch-icon"]').all()) {
@@ -119,12 +119,12 @@ for (const width of [320, 390, 1440]) {
     await page.getByRole('button', { name: 'Find dresses' }).click();
     await expect(page.getByLabel('Total cash available by collection', { exact: true })).toBeFocused();
     await capture(page, `${width}-error.png`);
-    await page.getByRole('button', { name: 'Use sample dates' }).click(); await shortlist(page);
+    await page.getByRole('button', { name: 'Use example dates' }).click(); await shortlist(page);
     for (const [name, id] of [['Sage wrap', 'sage'], ['Midnight blue', 'midnight'], ['Dusty rose', 'rose'], ['Emerald evening', 'emerald'], ['Champagne glow', 'champagne'], ['Plum satin', 'plum']]) {
       const card = page.getByRole('article', { name, exact: true });
       await card.scrollIntoViewIfNeeded(); await display(card.locator('img'), id);
       await expect(card.locator('img')).toHaveAttribute('loading', 'lazy');
-      expect((await card.getByRole('button', { name: 'Costs & sample terms' }).boundingBox())!.height).toBeGreaterThanOrEqual(44);
+      expect((await card.getByRole('button', { name: 'Costs & terms' }).boundingBox())!.height).toBeGreaterThanOrEqual(44);
     }
     for (const [name, id] of [['Sage wrap', 'sage'], ['Midnight blue', 'midnight']]) await display(page.getByRole('button', { name: `Remove ${name}`, exact: true }).locator('img'), id);
     await page.evaluate(() => scrollTo(0, 0)); await capture(page, `${width}-shortlist.png`, width >= 760);
@@ -132,7 +132,7 @@ for (const width of [320, 390, 1440]) {
     await expect(page.getByRole('heading', { name: 'Compare your looks' })).toBeFocused();
     for (const [index, id] of ['sage', 'midnight'].entries()) {
       const look = page.locator('.compare-look').nth(index); await display(look.locator('img'), id);
-      await expect(look.getByRole('link')).toHaveAttribute('href', `/images/${id}.png`);
+      await expect(look.getByRole('link')).toHaveCount(0);
       expect((await request.get(`/images/${id}.png`)).ok()).toBe(true);
     }
     if (width < 760) {

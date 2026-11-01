@@ -11,8 +11,8 @@ async function contained(page: Page) {
 }
 
 async function disclosure(page: Page) {
-  await expect(page.getByText('Sample dresses. Real decisions.')).toBeVisible();
-  await expect(page.getByText('Fictional collection · Personal try-on not connected.')).toBeVisible();
+  await expect(page.getByText('Demo shop.')).toBeVisible();
+  await expect(page.getByText('Prices, dates and AI-created dress photos are examples · Personal try-on not connected')).toBeVisible();
 }
 
 for (const [width, fontSize] of [[768, 16], [390, 32]] as const) {
@@ -110,7 +110,7 @@ test('print uses the current selected inquiry', async ({ page }) => {
   await page.emulateMedia({ media: 'print' });
   const summary = page.locator('.print-summary');
   await expect(summary).toBeVisible(); await expect(summary).toHaveText(current);
-  await expect(page.getByRole('link', { name: 'Sulyap, restart sample' })).toBeHidden();
+  await expect(page.getByRole('link', { name: 'Sulyap, start over' })).toBeHidden();
   await expect(page.getByRole('navigation', { name: 'Rental journey' })).toBeHidden();
   for (const name of ['Copy inquiry', 'Save text', 'Print summary']) await expect(page.getByRole('button', { name })).toBeHidden();
   await expect(page.getByLabel('Your inquiry', { exact: true })).toBeHidden();

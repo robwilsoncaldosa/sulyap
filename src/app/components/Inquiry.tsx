@@ -64,7 +64,7 @@ export function Inquiry({
           <DressImage
             dress={dress}
             sizes="(max-width: 760px) 110px, 320px"
-            alt={`Illustrative AI-created model wearing ${dress.name.toLowerCase()}`}
+            alt={`Model wearing the ${dress.name.toLowerCase()} dress`}
           />
         </div>
         <h2>{dress.name}</h2>

@@ -44,7 +44,7 @@ for (const [width, fontSize, reducedMotion, colorScheme] of [
     await expect(page.locator('details, summary')).toHaveCount(0);
     for (const [name, ...values] of costs) {
       const card = page.getByRole('article', { name, exact: true });
-      const trigger = card.getByRole('button', { name: 'Costs & sample terms' });
+      const trigger = card.getByRole('button', { name: 'Costs & terms' });
       const panel = card.locator('[data-slot=accordion-content]');
       expect((await trigger.boundingBox())!.height).toBeGreaterThanOrEqual(44);
       await expect(trigger).toHaveAttribute('aria-expanded', 'false');
@@ -55,12 +55,12 @@ for (const [width, fontSize, reducedMotion, colorScheme] of [
       await settled(panel, true);
       await expect(panel.locator('dd')).toHaveText(values);
       await expect(panel).toContainText(terms);
-      if (name === 'Dusty rose') await expect(panel).toContainText('Sample conflict: Nov 8–10, 2026 (inclusive).');
+      if (name === 'Dusty rose') await expect(panel).toContainText('Already booked Nov 8–10, 2026 (inclusive).');
       await expect(trigger).toBeFocused();
     }
     await expect(page.locator('[data-slot=accordion-trigger][aria-expanded=true]')).toHaveCount(6);
     const card = page.getByRole('article', { name: 'Sage wrap', exact: true });
-    const trigger = card.getByRole('button', { name: 'Costs & sample terms' });
+    const trigger = card.getByRole('button', { name: 'Costs & terms' });
     const panel = card.locator('[data-slot=accordion-content]');
     await trigger.focus(); await page.keyboard.press('Space');
     await expect(trigger).toHaveAttribute('aria-expanded', 'false'); await settled(panel, false);
@@ -127,7 +127,7 @@ test('semantic badges retain readable contrast and pointer motion settles withou
       });
       expect(contrast, (await badge.textContent())!).toBeGreaterThanOrEqual(4.5);
     }
-    const trigger = page.getByRole('article', { name: 'Sage wrap', exact: true }).getByRole('button', { name: 'Costs & sample terms' });
+    const trigger = page.getByRole('article', { name: 'Sage wrap', exact: true }).getByRole('button', { name: 'Costs & terms' });
     await trigger.scrollIntoViewIfNeeded();
     for (const reducedMotion of ['no-preference', 'reduce'] as const) {
       await page.emulateMedia({ reducedMotion });

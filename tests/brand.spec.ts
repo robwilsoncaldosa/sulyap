@@ -10,7 +10,7 @@ for (const [width, fontSize] of [[390, 16], [1440, 16], [390, 32]] as const) {
     await page.goto('/');
     if (fontSize === 32) await page.addStyleTag({ content: 'html { font-size: 32px !important; }' });
     await expect(page).toHaveTitle(/Sulyap/);
-    await expect(page.getByRole('link', { name: 'Sulyap, restart sample' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Sulyap, start over' })).toBeVisible();
     await expect(page.locator('footer')).toContainText('Sulyap');
     await page.getByRole('button', { name: 'Find dresses' }).click();
     for (const name of ['Sage wrap', 'Midnight blue']) await page.getByRole('button', { name: `Select ${name}`, exact: true }).click();
@@ -18,7 +18,7 @@ for (const [width, fontSize] of [[390, 16], [1440, 16], [390, 32]] as const) {
     const explanation = page.getByRole('region', { name: 'Your photo. Two possible looks.' });
     const summary = explanation.getByRole('button', { name: 'How personal try-on works' });
     await expect(explanation).toContainText('YouCam · not connected');
-    await expect(explanation).toContainText('images above show sample models');
+    await expect(explanation).toContainText('photos above show a model');
     await expect(explanation).toContainText('isn’t configured on this server');
     await expect(summary).toHaveAttribute('aria-expanded', 'false');
     await summary.focus();

@@ -123,9 +123,9 @@ export function Comparison({
                         <DressImage
                           dress={dress}
                           sizes="(max-width: 760px) calc(50vw - 30px), 48vw"
-                          alt={`Illustrative AI-created model wearing ${dress.name.toLowerCase()}`}
+                          alt={`Model wearing the ${dress.name.toLowerCase()} dress`}
                         />
-                        <span className="image-label">Illustrative image</span>
+                        <span className="image-label">Model photo</span>
                         {(looks[index]?.status === "creating" ||
                           looks[index]?.status === "running") && (
                           <span className="look-progress">
@@ -147,13 +147,6 @@ export function Comparison({
                     <p className="date-status">
                       {dateMessage(quotes[index].dateStatus)}
                     </p>
-                    <a href={dress.image} target="_blank" rel="noreferrer">
-                      View full-size sample
-                      <span className="sr-only">
-                        {" "}
-                        of {dress.name} (opens a new tab)
-                      </span>
-                    </a>
                     {looks[index]?.status === "success" && (
                       <a
                         href={looks[index].imageUrl}
@@ -213,8 +206,8 @@ export function Comparison({
           </p>
           <p>
             {previewed
-              ? "YouCam previews are AI-generated from your photo; cards labeled “Illustrative image” show sample models. Neither confirms size, physical fit or availability; the shop does."
-              : "These images show fictional models, not you. Physical fit and availability need shop confirmation."}
+              ? "YouCam previews are AI-generated from your photo; cards labeled “Model photo” show the shop’s model. Neither confirms size, physical fit or availability; the shop does."
+              : "These photos show a model, not you. Physical fit and availability need shop confirmation."}
           </p>
         </div>
       </Stack>

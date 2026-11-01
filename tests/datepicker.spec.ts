@@ -54,7 +54,7 @@ for (const [width, fontSize, reducedMotion] of [[320,16,'no-preference'],[390,32
     await expect(page.getByLabel('Event date', { exact: true }).and(page.locator('button, input'))).toBeFocused();
     await expect(page.getByLabel('Event date', { exact: true }).and(page.locator('button, input'))).toHaveAccessibleDescription('Choose a valid event date.');
     await page.screenshot({ path: `test-results/qa/error-${width}-${fontSize}.png` });
-    await page.getByRole('button', { name:'Use sample dates' }).click();
+    await page.getByRole('button', { name:'Use example dates' }).click();
     await expect(page.getByLabel('Event date', { exact: true }).and(page.locator('button, input'))).toHaveText('Nov 8, 2026');
     await expect(page.getByLabel('Event date', { exact: true }).and(page.locator('button, input'))).toHaveAttribute('aria-invalid','false');
   });
@@ -84,7 +84,7 @@ for (const timezoneId of ['Asia/Manila','America/Los_Angeles']) {
       const text=await page.getByLabel('Your inquiry',{exact:true}).inputValue();
       for(const iso of dates) { const [y,m,d]=iso.split('-').map(Number); expect(text).toContain(new Intl.DateTimeFormat('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'}).format(new Date(Date.UTC(y,m-1,d,12)))); }
       await page.getByRole('button',{name:'Edit occasion'}).click();
-      await page.getByRole('button',{name:'Use sample dates'}).click();
+      await page.getByRole('button',{name:'Use example dates'}).click();
       // Clear retained selections through the public shortlist controls before next scenario.
       await page.getByRole('button',{name:'Find dresses'}).click();
       for(const name of ['Sage wrap','Midnight blue']) await page.getByRole('button',{name:`Remove ${name}`,exact:true}).click();
@@ -104,7 +104,7 @@ test('all date controls clear, report missing dates, and recover through Calenda
     await expect(trigger).toBeFocused();
     await expect(trigger).toHaveAttribute('aria-invalid','true');
     await expect(trigger).toHaveAccessibleDescription(new RegExp(`Choose a valid ${i===2?'return':i===1?'event':'collection'} date.`));
-    await page.getByRole('button',{name:'Use sample dates'}).click();
+    await page.getByRole('button',{name:'Use example dates'}).click();
   }
   for (const [i,label] of dateLabels.entries()) await setDate(page,label,`2026-11-0${i+6}`);
   await page.getByRole('button',{name:'Find dresses'}).click();

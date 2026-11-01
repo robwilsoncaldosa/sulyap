@@ -203,6 +203,6 @@ describe("personal previews change pictures, not money", () => {
     expect(previewed).toContain("YouCam AI preview");
     expect(previewed).toContain("Original sage wrap reference");
     expect(previewed).toContain("Creating your look");
-    expect(previewed.match(/Illustrative image/g)?.length).toBeGreaterThanOrEqual(1);
+    expect(previewed.match(/Model photo/g)?.length).toBeGreaterThanOrEqual(1);
   });
 });

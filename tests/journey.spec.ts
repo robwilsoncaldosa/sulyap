@@ -34,10 +34,10 @@ for (const width of [390, 1440]) {
     page.on('pageerror', error => errors.push(error.message));
     page.on('console', msg => { if (msg.type() === 'error') errors.push(msg.text()); });
     await page.goto('/');
-    await expect(page.getByText('Sample dresses. Real decisions.')).toBeVisible();
+    await expect(page.getByText('Demo shop.')).toBeVisible();
     await expect(page.locator('input[type=file]')).toHaveCount(0);
     await page.keyboard.press('Tab');
-    await expect(page.getByRole('link', { name: 'Sulyap, restart sample' })).toBeFocused();
+    await expect(page.getByRole('link', { name: 'Sulyap, start over' })).toBeFocused();
     expect(await page.locator(':focus').evaluate(el => getComputedStyle(el).outlineStyle)).not.toBe('none');
     await fits(page);
     await page.getByLabel('Total cash available by collection').focus();
@@ -73,8 +73,8 @@ for (const width of [390, 1440]) {
     const downloadEvent = page.waitForEvent('download');
     await page.getByRole('button', { name: 'Save text' }).click();
     const download = await downloadEvent;
-    expect(download.suggestedFilename()).toBe('sulyap-sample-inquiry.txt');
-    expect(text).toMatch(/^Sulyap · Sample inquiry/);
+    expect(download.suggestedFilename()).toBe('sulyap-inquiry.txt');
+    expect(text).toMatch(/^Sulyap · Rental inquiry/);
     expect(await readFile((await download.path())!, 'utf8')).toBe(text);
     await fits(page);
     expect(external).toEqual([]); expect(errors).toEqual([]);
@@ -84,7 +84,7 @@ for (const width of [390, 1440]) {
 test('validation rejects unsupported dates and amounts, associates and focuses errors', async ({ page }) => {
   await page.goto('/');
   for (const [label, value, error] of [['Return date','2026-11-10','up to 3 inclusive'], ['Return date','2026-11-06','on or after collection'], ['Event date','2026-11-10','event must fall between'], ['Total cash available by collection','1.001','positive PHP amount']] ) {
-    await page.getByRole('button', { name: 'Use sample dates' }).click();
+    await page.getByRole('button', { name: 'Use example dates' }).click();
     if (label.endsWith('date')) await setDate(page, label, value);
     else await page.getByLabel(label, { exact: true }).and(page.locator('button, input')).fill(value);
     await find(page);
@@ -94,7 +94,7 @@ test('validation rejects unsupported dates and amounts, associates and focuses e
     await expect(page.locator('.field-error').filter({ hasText: error })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Start with your occasion' })).toBeVisible();
   }
-  await page.getByRole('button', { name: 'Use sample dates' }).click();
+  await page.getByRole('button', { name: 'Use example dates' }).click();
   await setDate(page, 'Collection date', ''); await find(page);
   await expect(page.getByLabel('Collection date', { exact: true }).and(page.locator('button, input'))).toHaveAccessibleDescription('Choose a valid collection date.');
 });
@@ -108,7 +108,7 @@ test('later edits recompute all consumers and date conflicts remove stale prefer
   await find(page); await choose(page, 'Dusty rose', 'Midnight blue'); await inquiry(page, 'A · Dusty rose');
   await expect(page.getByLabel('Your inquiry', { exact: true })).toHaveValue(/AMI-03/);
   await page.getByRole('button', { name: 'Edit occasion' }).click();
-  await page.getByRole('button', { name: 'Use sample dates' }).click();
+  await page.getByRole('button', { name: 'Use example dates' }).click();
   await expect(page.getByRole('status')).toContainText('conflicts with your dates and was removed');
   await find(page);
   await expect(page.getByText('1 of 2 selected')).toBeVisible();

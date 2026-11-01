@@ -100,21 +100,17 @@ export function OccasionForm({
         Find dresses <ArrowRight data-icon="inline-end" />
       </Button>
       <div className="sample-dates">
-        <p>
-          Try the sample occasion: collection Nov 7, event Nov 8, return Nov 9,
-          2026. All dates use Asia/Manila.
-        </p>
         <Button
           type="button"
           variant="link"
           onClick={() => onChange({ ...sampleOccasion })}
         >
-          Use sample dates and ₱2,000 limit
+          Use example dates and ₱2,000 limit
         </Button>
       </div>
       <p className="package-note">
-        One flat package, up to 3 inclusive calendar days. Local pickup; return
-        to the shop by 6 PM.
+        One flat package, up to 3 inclusive calendar days, in Philippine time.
+        Local pickup; return to the shop by 6 PM.
       </p>
     </form>
   );

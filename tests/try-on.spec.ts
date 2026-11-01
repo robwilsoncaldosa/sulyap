@@ -48,7 +48,7 @@ for (const width of [390, 1280]) {
     const mock: Mock = { uploads: 0, creates: [], polls: 0 };
     await mockTryOn(page, mock);
     const panel = await openCompare(page);
-    await expect(page.getByText('Fictional collection · Personal try-on by YouCam AI.')).toBeVisible();
+    await expect(page.getByText('Prices, dates and AI-created dress photos are examples · Personal try-on by YouCam AI')).toBeVisible();
     await expect(panel).toContainText('YouCam AI Clothes');
     const table = await page.getByRole('table').innerText();
     const file = panel.getByLabel('Your photo');
@@ -101,7 +101,7 @@ test('a failed look explains itself and retries only that dress; removing the ph
   await expect(status).toContainText('couldn’t find a standing pose', { timeout: 10000 });
   await expect(status.locator('li[data-status=success]')).toContainText('Sage wrap');
   await expect(page.getByRole('img', { name: 'YouCam AI preview of you wearing the sage wrap dress' })).toBeVisible();
-  await expect(page.locator('.compare-look').nth(1).locator('.image-label')).toHaveText('Illustrative image');
+  await expect(page.locator('.compare-look').nth(1).locator('.image-label')).toHaveText('Model photo');
   await expect(panel.getByRole('button', { name: 'Finish my looks' })).toBeEnabled();
   delete mock.fail!.midnight;
   await panel.getByRole('button', { name: 'Try again for Midnight blue' }).click();
@@ -110,7 +110,7 @@ test('a failed look explains itself and retries only that dress; removing the ph
   expect(mock.creates).toHaveLength(3);
   expect(mock.uploads).toBe(1);
   await panel.getByRole('button', { name: 'Remove my photo' }).click();
-  await expect(page.locator('.compare-look .image-label')).toHaveText(['Illustrative image', 'Illustrative image']);
+  await expect(page.locator('.compare-look .image-label')).toHaveText(['Model photo', 'Model photo']);
   await expect(panel.getByRole('img', { name: 'Your photo for the try-on' })).toHaveCount(0);
   await panel.getByRole('checkbox').uncheck();
   await expect(panel.getByLabel('Your photo')).toBeDisabled();

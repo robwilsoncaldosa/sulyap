@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 import {
   Alert,
   AlertDescription,
-  Badge,
   Button,
   Container,
   Grid,
@@ -89,7 +88,7 @@ export default function App() {
           <a
             className="wordmark"
             href="./"
-            aria-label={`${brand.name}, restart sample`}
+            aria-label={`${brand.name}, start over`}
           >
             <img
               src="/brand/sulyap-horizontal.svg"
@@ -99,14 +98,14 @@ export default function App() {
               height={38}
             />
           </a>
-          <Badge variant="outline">Sample collection</Badge>
         </header>
         <div className="demo-disclosure">
-          <strong>Sample dresses. Real decisions.</strong>
+          <strong>Demo shop.</strong>
           <span>
+            Prices, dates and AI-created dress photos are examples ·{" "}
             {tryOn.available
-              ? "Fictional collection · Personal try-on by YouCam AI."
-              : "Fictional collection · Personal try-on not connected."}
+              ? "Personal try-on by YouCam AI"
+              : "Personal try-on not connected"}
           </span>
         </div>
         <nav aria-label="Rental journey">
@@ -211,11 +210,10 @@ export default function App() {
                         <DressImage
                           dress={catalog[0]}
                           sizes="(max-width: 760px) calc(100vw - 40px), 50vw"
-                          alt="Illustrative AI-created model wearing a sage wrap dress"
+                          alt="Model wearing the sage wrap dress"
                         />
                       </div>
                       <figcaption>
-                        <span>Illustrative image · Sage wrap</span>
                         <em>A soft spot for sage.</em>
                       </figcaption>
                     </figure>
@@ -225,8 +223,8 @@ export default function App() {
               {step === 1 && (
                 <>
                   <p className="catalog-intro">
-                    Choose two dresses from <strong>Amihan Occasion Studio</strong>,
-                    our fictional shop. Your inquiry keeps the dates and cost warnings.
+                    Choose two dresses from <strong>Amihan Occasion Studio</strong> to
+                    see on you and compare side by side.
                   </p>
                   <div className="catalog-grid">
                     <Grid>
@@ -325,8 +323,8 @@ export default function App() {
         <footer>
           <p>{brand.name} · Your occasion, thoughtfully dressed.</p>
           <p>
-            Demo collection. Confirm fit, dates and charges with the shop.
-            No booking or payment.
+            Confirm fit, dates and charges with the shop. Sulyap doesn’t book
+            or take payment.
           </p>
         </footer>
       </Container>

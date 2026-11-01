@@ -57,7 +57,7 @@ export function validateOccasion(
       errors.returnDate = "Return must be on or after collection.";
     else if (end - start > 2)
       errors.returnDate =
-        "This sample package covers up to 3 inclusive calendar days. Choose a shorter range.";
+        "Rentals cover up to 3 inclusive calendar days. Choose a shorter range.";
     if (event !== null && (event < start || event > end))
       errors.event = "The event must fall between collection and return.";
   }
@@ -110,7 +110,7 @@ export function evaluateDress(dress: Dress, occasion: Occasion) {
 export type Evaluation = ReturnType<typeof evaluateDress>;
 export const dateMessage = (status: Evaluation["dateStatus"]) =>
   ({
-    clear: "Sample calendar clear · confirm with shop",
+    clear: "Calendar clear · confirm with shop",
     conflict: "Date conflict · cannot select",
     unknown: "Dates need confirmation",
     invalid: "Check your occasion details",
@@ -155,8 +155,8 @@ export function createInquiry(dress: Dress, occasion: Occasion): string {
     dress.security === null ? "security deposit" : "",
   ].filter(Boolean);
   return [
-    `${brand.name} · Sample inquiry`,
-    "Fictional demo data for Amihan Occasion Studio. This is a prototype selection, not a booking, inventory hold, payment or sent message.",
+    `${brand.name} · Rental inquiry`,
+    "For Amihan Occasion Studio (demo shop). This is an inquiry, not a booking, inventory hold, payment or sent message.",
     "",
     `Preferred dress: ${dress.name} (${dress.reference})`,
     `Collection: ${formatDate(occasion.collection)} · local shop pickup`,
@@ -180,9 +180,9 @@ export function createInquiry(dress: Dress, occasion: Occasion): string {
         ]
       : []),
     "",
-    "Please confirm availability for the full collection–return range; the sample calendar is not a hold.",
+    "Please confirm availability for the full collection–return range; the online calendar is not a hold.",
     "Can I arrange a physical fitting, and can you confirm the size and physical fit before I reserve?",
-    "Please confirm local pickup arrangements and physical return by 6 PM. Cleaning is included in the sample terms.",
+    "Please confirm local pickup arrangements and physical return by 6 PM. Cleaning is included in the listed terms.",
     "Security is refundable only after inspection, subject to deductions. Please confirm deduction conditions and refund timing; neither a full refund nor its timing is guaranteed.",
     "Catalog photos are illustrative. Any AI try-on preview is not a size or fit check.",
   ].join("\n");

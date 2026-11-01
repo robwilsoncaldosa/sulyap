@@ -48,7 +48,7 @@ export function TryOnPanel({ dresses, tryOn }: { dresses: Dress[]; tryOn: TryOn 
       <p>
         {available
           ? "Preview both dresses on yourself with YouCam’s AI virtual try-on. The cash table below stays the same."
-          : "This is where you’d preview both dresses on yourself. The images above show sample models."}
+          : "This is where you’d preview both dresses on yourself. The photos above show a model."}
       </p>
       {available ? (
         <div className="try-on-flow">
