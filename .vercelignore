@@ -1,0 +1,14 @@
+# Only the app's source goes to Vercel: never local secrets, photos or video work.
+.env
+.env.*
+!.env.example
+_archive
+artifacts
+.video
+.claude
+docs
+node_modules
+dist
+test-results
+playwright-report
+smoke-*.jpg
