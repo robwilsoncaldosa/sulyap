@@ -100,12 +100,12 @@ export default function App() {
           </a>
         </header>
         <div className="demo-disclosure">
-          <strong>Demo shop.</strong>
+          <strong>Demo shop.</strong>{" "}
           <span>
-            Prices, dates and AI-created dress photos are examples ·{" "}
-            {tryOn.available
-              ? "Personal try-on by YouCam AI"
-              : "Personal try-on not connected"}
+            Example prices, dates and AI-created photos ·{" "}
+            <span className="nowrap">
+              {tryOn.available ? "Try-on by YouCam AI" : "Try-on not connected"}
+            </span>
           </span>
         </div>
         <nav aria-label="Rental journey">

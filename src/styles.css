@@ -195,6 +195,9 @@ img {
   font-weight: 500;
   color: var(--foreground);
 }
+.demo-disclosure .nowrap {
+  white-space: nowrap;
+}
 .stepper {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -873,6 +876,7 @@ footer {
     padding-block: 16px;
   }
   .demo-disclosure {
+    display: block;
     font-size: 0.75rem;
   }
   .stepper {

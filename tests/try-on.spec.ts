@@ -48,7 +48,7 @@ for (const width of [390, 1280]) {
     const mock: Mock = { uploads: 0, creates: [], polls: 0 };
     await mockTryOn(page, mock);
     const panel = await openCompare(page);
-    await expect(page.getByText('Prices, dates and AI-created dress photos are examples · Personal try-on by YouCam AI')).toBeVisible();
+    await expect(page.getByText('Example prices, dates and AI-created photos · Try-on by YouCam AI')).toBeVisible();
     await expect(panel).toContainText('YouCam AI Clothes');
     const table = await page.getByRole('table').innerText();
     const file = panel.getByLabel('Your photo');

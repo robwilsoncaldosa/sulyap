@@ -12,7 +12,7 @@ async function contained(page: Page) {
 
 async function disclosure(page: Page) {
   await expect(page.getByText('Demo shop.')).toBeVisible();
-  await expect(page.getByText('Prices, dates and AI-created dress photos are examples · Personal try-on not connected')).toBeVisible();
+  await expect(page.getByText('Example prices, dates and AI-created photos · Try-on not connected')).toBeVisible();
 }
 
 for (const [width, fontSize] of [[768, 16], [390, 32]] as const) {
